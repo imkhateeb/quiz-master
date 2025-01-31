@@ -1,8 +1,20 @@
 import { useState } from "react";
 import { Button, Modal } from "../../shared";
+import { useNavigate } from "react-router-dom";
+import { errorToast } from "../../shared/Toast";
 
 const LaunchPortal = ({ onClose }) => {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
+
+  // handlers
+  const handleStartQuiz = () => {
+    if (name?.trim()?.length === 0) {
+      errorToast("Please enter your name!");
+      return;
+    }
+    navigate(`/quiz/${name}?que=1`);
+  };
   return (
     <Modal onClose={onClose}>
       <div className="flex flex-col gap-4 py-5">
@@ -16,7 +28,9 @@ const LaunchPortal = ({ onClose }) => {
           }}
           className="py-2 px-3 rounded-xl text-lg border-[2px] border-darky/30 focus:border-darky transition-all duration-300 ease-in-out"
         />
-        <Button className="py-2 text-lg rounded-xl">Start Now!</Button>
+        <Button onClick={handleStartQuiz} className="py-2 text-lg rounded-xl">
+          Start Now!
+        </Button>
       </div>
     </Modal>
   );
