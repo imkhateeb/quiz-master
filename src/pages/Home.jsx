@@ -1,4 +1,5 @@
 import Button from "../components/shared/Button";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -24,9 +25,11 @@ const Home = () => {
             </p>
           </div>
         </div>
-        <div>
-          <Button className="py-4 px-20 text-xl rounded-xl">Start Quiz</Button>
-        </div>
+        <Link to="/quiz">
+          <Button className="py-4 px-[100px] text-xl rounded-xl">
+            Start Quiz
+          </Button>
+        </Link>
       </div>
     </div>
   );

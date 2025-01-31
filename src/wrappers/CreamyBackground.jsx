@@ -1,5 +1,5 @@
-const CreamyBackground = () => {
-  return <div>CreamyBackground</div>;
+const CreamyBackground = ({ children }) => {
+  return <div className="bg-creamy">{children}</div>;
 };
 
 export default CreamyBackground;
