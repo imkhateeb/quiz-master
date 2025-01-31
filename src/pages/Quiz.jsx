@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { Option, Question, QuizHeader } from "../components/features/quiz";
 import { Button } from "../components/shared";
 
 const Quiz = () => {
+  const [selectedOption, setSelectedOption] = useState(0);
   return (
     <div className="flex flex-col gap-8 w-[350px] sm:w-[400px] md:w-[450px] shadow-even-shadow-sm rounded-xl p-4 max-sm:p-2.5">
       <QuizHeader />
@@ -17,8 +19,8 @@ const Quiz = () => {
               key={JSON.stringify(question)}
               option={idx}
               content="This is an option content for the question"
-              isCorrect={true}
-              optionSelected={0}
+              optionSelected={selectedOption}
+              onClick={() => setSelectedOption(idx)}
             />
           );
         })}

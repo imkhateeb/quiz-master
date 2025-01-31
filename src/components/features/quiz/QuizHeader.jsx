@@ -7,6 +7,10 @@ const QuizHeader = ({ questionNo = 1 }) => {
         </span>
         <span className="font-bold">Question #{questionNo}</span>
       </div>
+      <div className="w-full flex gap-2 items-center">
+        <progress className="w-full text-white" value={0.5} />
+        <span className="font-semibold text-sm text-gray-600">1/5</span>
+      </div>
     </div>
   );
 };
