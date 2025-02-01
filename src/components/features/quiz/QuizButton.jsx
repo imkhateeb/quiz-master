@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "../../shared";
+import getResult from "../../../utils/getResult";
 
 const QuizButton = ({
   disabled,
@@ -10,15 +11,18 @@ const QuizButton = ({
 }) => {
   const navigate = useNavigate();
   const { name } = useParams();
-  console.log(quizResponse);
+
+  const result = quizResponse ? getResult(quizResponse) : {};
+
   return (
     <Button
       className={className}
       onClick={
         isLastQuestion
-          ? navigate(
-              `/result?name=${name}&response=${JSON.stringify(quizResponse)}`
-            )
+          ? () =>
+              navigate(
+                `/result?name=${name}&response=${JSON.stringify(result)}`
+              )
           : onClick
       }
       disabled={disabled}

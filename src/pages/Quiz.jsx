@@ -5,12 +5,12 @@ import {
   QuizButton,
   QuizHeader,
 } from "../components/features/quiz";
-import { Button, Loader } from "../components/shared";
+import { Loader } from "../components/shared";
 import useQuery from "../hooks/useQuery";
 import buildResponse from "../utils/buildResponse";
 
 const Quiz = () => {
-  const { data: questions, loading, error } = useQuery("/api");
+  const { data: questions, loading } = useQuery("/api");
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [response, setResponse] = useState(null);
 
@@ -20,8 +20,6 @@ const Quiz = () => {
       setResponse(buildResponse(questions));
     }
   }, [questions]);
-
-  console.log(response);
   return (
     <div className="flex flex-col gap-8 w-[350px] sm:w-[400px] md:w-[450px] shadow-even-shadow-sm rounded-xl p-4 max-sm:p-2.5">
       {!loading ? (
