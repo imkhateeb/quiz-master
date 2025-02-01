@@ -6,9 +6,7 @@ import { useEffect, useState } from "react";
 const ResultDetail = () => {
   const { search } = useLocation();
   const query = new URLSearchParams(search);
-  const { data: questions, loading } = useQuery(
-    "https://api.jsonserve.com/Uw5CrX"
-  );
+  const { data: questions, loading } = useQuery("/api");
   const nameParam = query.get("name");
   const responseParam = JSON.parse(query.get("response"));
   const [currentQuestion, setCurrentQuestion] = useState(null);
