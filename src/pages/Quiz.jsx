@@ -10,7 +10,9 @@ import useQuery from "../hooks/useQuery";
 import buildResponse from "../utils/buildResponse";
 
 const Quiz = () => {
-  const { data: questions, loading } = useQuery("/api");
+  const { data: questions, loading } = useQuery(
+    "https://api.jsonserve.com/Uw5CrX"
+  );
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [response, setResponse] = useState(null);
 
