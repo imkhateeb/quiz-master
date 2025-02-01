@@ -178,3 +178,26 @@ export default useQuery;
 ---
 
 ## Project Screenshots
+
+Here are different pages of the project
+
+### 1. Home Page
+![Screenshot 2025-02-01 214534](https://github.com/user-attachments/assets/f81894c6-5c52-4c32-9cc4-f35c9d40b224)
+
+
+### 2. Quiz Landing Page
+![Screenshot 2025-02-01 214543](https://github.com/user-attachments/assets/9e65d0e8-c9c7-4324-9d94-d2424b1d4ee2)
+![Screenshot 2025-02-01 214554](https://github.com/user-attachments/assets/77413229-9b3c-40e1-a15e-c9e3aabda7d3)
+
+
+### 3. Quiz Page
+![Screenshot 2025-02-01 214607](https://github.com/user-attachments/assets/b300fa7f-be7a-495e-9e4d-7f5a48076ec0)
+
+
+### 4. Result Page
+![Screenshot 2025-02-01 214637](https://github.com/user-attachments/assets/0f69ad7e-df64-4023-b423-37dc4810ce86)
+
+
+### 5. Result Detail Page
+![Screenshot 2025-02-01 214650](https://github.com/user-attachments/assets/80ab98b0-d4f7-49a6-9829-0546021cd746)
+
