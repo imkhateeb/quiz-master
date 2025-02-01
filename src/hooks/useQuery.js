@@ -12,7 +12,7 @@ const useQuery = (url, options = {}) => {
 
     try {
       const response = await axios.get(url, options);
-      setData(response.data);
+      setData(response.data?.questions || []);
     } catch (err) {
       setError(err);
     } finally {
@@ -22,7 +22,7 @@ const useQuery = (url, options = {}) => {
 
   useEffect(() => {
     fetchData();
-  }, [fetchData]);
+  }, []);
 
   return { data, loading, error, refetch: fetchData };
 };

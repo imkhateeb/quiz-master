@@ -1,4 +1,5 @@
 import Button from "./Button";
 import Modal from "./Modal";
+import Loader from "./Loader";
 
-export { Button, Modal };
+export { Button, Modal, Loader };

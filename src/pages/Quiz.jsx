@@ -1,33 +1,79 @@
-import { useState } from "react";
-import { Option, Question, QuizHeader } from "../components/features/quiz";
-import { Button } from "../components/shared";
+import { useEffect, useState } from "react";
+import {
+  Option,
+  Question,
+  QuizButton,
+  QuizHeader,
+} from "../components/features/quiz";
+import { Button, Loader } from "../components/shared";
+import useQuery from "../hooks/useQuery";
+import buildResponse from "../utils/buildResponse";
 
 const Quiz = () => {
-  const [selectedOption, setSelectedOption] = useState(0);
+  const { data: questions, loading, error } = useQuery("/api");
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [response, setResponse] = useState(null);
+
+  useEffect(() => {
+    if (questions?.length > 0) {
+      setCurrentQuestion(0);
+      setResponse(buildResponse(questions));
+    }
+  }, [questions]);
+
+  console.log(response);
   return (
     <div className="flex flex-col gap-8 w-[350px] sm:w-[400px] md:w-[450px] shadow-even-shadow-sm rounded-xl p-4 max-sm:p-2.5">
-      <QuizHeader />
-      <Question
-        question={
-          "What is the internal part of human body used as a digestive systems?"
-        }
-      />
-      <div className="flex flex-col gap-4">
-        {[1, 2, 3, 4]?.map((question, idx) => {
-          return (
-            <Option
-              key={JSON.stringify(question)}
-              option={idx}
-              content="This is an option content for the question"
-              optionSelected={selectedOption}
-              onClick={() => setSelectedOption(idx)}
-            />
-          );
-        })}
-      </div>
-      <Button disabled={true} className="bg-greeny py-3">
-        Continue
-      </Button>
+      {!loading ? (
+        <>
+          <QuizHeader
+            totalQuestions={questions?.length}
+            currentQuestion={currentQuestion}
+            positiveMarks={4}
+            negativeMarks={1}
+          />
+          <Question question={questions[currentQuestion]?.description} />
+          <div className="flex flex-col gap-4">
+            {questions[currentQuestion]?.options?.map((option, idx) => {
+              return (
+                <Option
+                  key={JSON.stringify(option)}
+                  option={idx}
+                  content={option?.description || "Example Option"}
+                  isSelected={
+                    option?.id ===
+                    response?.[questions[currentQuestion]?.id]?.selectedOption
+                  }
+                  onClick={() =>
+                    setResponse({
+                      ...response,
+                      [questions[currentQuestion]?.id]: {
+                        ...response[questions[currentQuestion]?.id],
+                        selectedOption: option?.id,
+                      },
+                    })
+                  }
+                />
+              );
+            })}
+          </div>
+          <QuizButton
+            disabled={
+              response?.[questions[currentQuestion]?.id]?.selectedOption === -1
+            }
+            className="py-3"
+            onClick={() => {
+              setCurrentQuestion(currentQuestion + 1);
+            }}
+            isLastQuestion={currentQuestion === questions.length - 1}
+            quizResponse={response}
+          />
+        </>
+      ) : (
+        <div className="flex justify-center items-center h-[500px]">
+          <Loader />
+        </div>
+      )}
     </div>
   );
 };

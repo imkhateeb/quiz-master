@@ -8,7 +8,7 @@ const QuizLayout = () => {
       <div className="w-screen h-screen flex justify-center items-center">
         <Routes>
           <Route path="/" element={<QuizHome />} />
-          <Route path="/:quizId" element={<Quiz />} />
+          <Route path="/:name" element={<Quiz />} />
         </Routes>
       </div>
     </CreamyBackground>
