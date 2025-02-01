@@ -94,8 +94,7 @@ Example response:
         { "id": 2, "description": "Madrid" },
         { "id": 3, "description": "Paris" },
         { "id": 4, "description": "Rome" }
-      ],
-      "correctOptionId": 3
+      ]
     }
   ]
 }
@@ -175,3 +174,7 @@ const useQuery = (url, options = {}) => {
 
 export default useQuery;
 ```
+
+---
+
+## Project Screenshots
