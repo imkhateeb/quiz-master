@@ -3,7 +3,7 @@ import { Button } from "../../shared";
 
 const CongratsMessage = ({ name, result }) => {
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-8 p-8 max-sm:p-4">
       <div className="flex flex-col">
         <div className="flex gap-2">
           <span className="text-5xl max-md:text-4xl max-sm:text-3xl font-poppins font-bold">
