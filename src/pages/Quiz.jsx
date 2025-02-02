@@ -10,7 +10,7 @@ import useQuery from "../hooks/useQuery";
 import buildResponse from "../utils/buildResponse";
 
 const Quiz = () => {
-  const { data: questions, loading } = useQuery("/api");
+  const { data: questions, loading } = useQuery("/api/quiz");
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [response, setResponse] = useState(null);
 
@@ -30,9 +30,9 @@ const Quiz = () => {
             positiveMarks={4}
             negativeMarks={1}
           />
-          <Question question={questions[currentQuestion]?.description} />
+          <Question question={questions?.[currentQuestion]?.description} />
           <div className="flex flex-col gap-4">
-            {questions[currentQuestion]?.options?.map((option, idx) => {
+            {questions?.[currentQuestion]?.options?.map((option, idx) => {
               return (
                 <Option
                   key={JSON.stringify(option)}
@@ -40,13 +40,13 @@ const Quiz = () => {
                   content={option?.description || "Example Option"}
                   isSelected={
                     option?.id ===
-                    response?.[questions[currentQuestion]?.id]?.selectedOption
+                    response?.[questions?.[currentQuestion]?.id]?.selectedOption
                   }
                   onClick={() =>
                     setResponse({
                       ...response,
-                      [questions[currentQuestion]?.id]: {
-                        ...response[questions[currentQuestion]?.id],
+                      [questions?.[currentQuestion]?.id]: {
+                        ...response[questions?.[currentQuestion]?.id],
                         selectedOption: option?.id,
                       },
                     })
@@ -57,13 +57,14 @@ const Quiz = () => {
           </div>
           <QuizButton
             disabled={
-              response?.[questions[currentQuestion]?.id]?.selectedOption === -1
+              response?.[questions?.[currentQuestion]?.id]?.selectedOption ===
+              -1
             }
             className="py-3"
             onClick={() => {
               setCurrentQuestion(currentQuestion + 1);
             }}
-            isLastQuestion={currentQuestion === questions.length - 1}
+            isLastQuestion={currentQuestion === questions?.length - 1}
             quizResponse={response}
           />
         </>
